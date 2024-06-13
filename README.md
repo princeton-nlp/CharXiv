@@ -168,4 +168,4 @@ University of Wisconsin, Madison
 The University of Hong Kong.
 
 🤗 We adapted part of the [MathVista](https://github.com/lupantech/MathVista)'s codebase in building our evaluation framework, and we greatly appreciate their contributions to the MLLM community.
-
+🤗 The lyrics in the teaser video are created by GPT-4o from our abstract, and the music is created by Suno. Video is manually edited using CapCut.
