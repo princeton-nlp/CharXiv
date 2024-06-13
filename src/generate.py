@@ -75,7 +75,9 @@ if __name__ == '__main__':
     print("Evaluation mode:", args.mode)
     print("Output file:", output_file)
 
-    evaluate(queries) # switch to demo(queries, model_path) for evaluating the IXC2 4khd model
+    # switch to demo(queries, model_path) for IXC2 4khd model
+    demo(queries, model_path=args.model_path)
+    # evaluate(queries) 
 
     for k in queries:
         queries[k].pop("figure_path", None)

@@ -36,7 +36,8 @@ unzip images.zip && rm images.zip
 │   ├── image_metadata_val.json
 │   ├── reasoning_test.json
 │   ├── reasoning_val.json
-│   └── README.md
+│   ├── README.md
+│   └── LICENSE
 ├── images/
 │   ├── 0.jpg
 │   ├── ...
@@ -44,38 +45,36 @@ unzip images.zip && rm images.zip
 │   └── README.md
 ├── results/
 │   └── README.md
-├── constants.py
-├── descriptive_utils.py
-├── reasoning_utils.py
-├── evaluate.py
-├── generate.py
-├── get_score.py
+├── src/
+│   ├── constants.py
+│   ├── descriptive_utils.py
+│   ├── reasoning_utils.py
+│   ├── evaluate.py
+│   ├── generate.py
+│   └── get_score.py
 ├── run.sh
-└── README.md
+├── README.md
+├── LICENSE
+└── .gitignore
 ```
-`data` folder contains all QAs and metadata for images, descriptive questions, and reasoning questions. Answers for the test split are intentionally made to `null` to prevent testing data from leaking into the public.
+* `data` folder contains all QAs and metadata for images, descriptive questions, and reasoning questions. Answers for the test split are intentionally made to `null` to prevent testing data from leaking into the public.  
+* `images` folder contains all images where their identifiers range from 0 to 2399. Note that there are only 2333 images in total and the numberings are **not** consecutive.  
+* `results` folder contains all response generation and scoring results.  
+* `src` folder contains all python code for CharXiv:  
+  * `constants.py` stores all the prompts and mappings from question ids to actual questions.  
+  * `descriptive_utils.py` contains all code to build queries for response generation and grading, as well as saving all artifacts for descriptive questions.  
+  * `reasoning_utils.py` contains all code to build queries for response generation and grading, as well as saving all artifacts for reasoning questions.  
+  * `evaluate.py` is the main function to evaluate model responses against the answer with gpt API calls.  
+  * `generate.py` is the main function to loop QAs for model to generate responses.  
+  * `get_score.py` is the main function to print the reasoning and descriptive question scores.
+* `run.sh` is the script to evaluate models
 
-`images` folder contains all images where their identifiers range from 0 to 2399. Note that there are only 2333 images in total and the numberings are **not** consecutive.
-
-`results` folder contains all response generation and scoring results.
-
-`constants.py` stores all the prompts and mappings from question ids to actual questions.
-
-`descriptive_utils.py` contains all code to build queries for response generation and grading, as well as saving all artifacts for descriptive questions.
-
-`reasoning_utils.py` contains all code to build queries for response generation and grading, as well as saving all artifacts for reasoning questions.
-
-`evaluate.py` is the main function to evaluate model responses against the answer with gpt API calls.
-
-`generate.py` is the main function to loop QAs for model to generate responses.
-
-`get_score.py` is the main function to print the reasoning and descriptive question scores.
 
 </details>
 
 ### Response generation
 CharXiv doesn't require any third-party python library when prompting your models to generate responses to the chart-question pairs. Therefore, to set up your model, you should implement the `custom_evaluate` function in `generate.py`. Specifically, this function takes `queries` as the input, which contain all the charts and questions CharXiv uses to evaluate models. It has the following structure:
-```
+```js
 {
     figure_id:{
         'question': ...<str>
@@ -88,17 +87,14 @@ CharXiv doesn't require any third-party python library when prompting your model
     },
 }
 ```
-Once you load your models and all preprocessing functions, simply to the following:
-```
+Once you load your models and all preprocessing functions, simply implement the `evaluate` function in `src/generate.py`:
+```py
 for k in tqdm(queries):
-        query = queries[k]['question']
-        image = queries[k]["figure_path"]
-        ########## Your own code ##########
-        query, image = preprocess(query, image) # your own model's preprocessing functions such as adding additional information or processing images.
-        response = model.chat(query, image)
-        ###################################
-        # once your model generates the response, simply do this and you are all set!
-        queries[k]['response'] = response
+    query = queries[k]['question']
+    image = queries[k]["figure_path"]
+    query, image = preprocess(query, image) #TODO
+    response = model.chat(query, image) #TODO
+    queries[k]['response'] = response
 ```
 
 To generate model responses:
