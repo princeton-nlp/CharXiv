@@ -152,8 +152,14 @@ Our original data contributions (all data except the charts) are distributed und
 
 
 ## 🥺 Cite
-If you use our work and are inspired by our work, please consider cite us (available soon):
+If you use our work and are inspired by our work, please consider cite us:
 ```
+@article{wang2024charxiv,
+  title={CharXiv: Charting Gaps in Realistic Chart Understanding in Multimodal LLMs},
+  author={Wang, Zirui and Xia, Mengzhou and He, Luxi and Chen, Howard and Liu, Yitao and Zhu, Richard and Liang, Kaiqu and Wu, Xindi and Liu, Haotian and Malladi, Sadhika and Chevalier, Alexis and Arora, Sanjeev and Chen, Danqi},
+  journal={arXiv preprint arXiv:2406.18521},
+  year={2024}
+}
 ```
 ## 🙌 Contributors and Acknowledgement
 **📊 CharXiv is built by a team consisting of:**  
