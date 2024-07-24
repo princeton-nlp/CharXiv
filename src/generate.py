@@ -1,36 +1,7 @@
-import os, json, argparse
-from tqdm import tqdm
-
-# sample code to evaluate the IXC2 4khd model
-# https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b
-def demo(queries, model_path=None):
-    import torch
-    from transformers import AutoModel, AutoTokenizer
-    assert model_path is not None, "Model path is required for demo"
-    torch.set_grad_enabled(False)
-    model = AutoModel.from_pretrained(model_path, torch_dtype=torch.bfloat16, 
-                                      trust_remote_code=True).cuda().eval()
-    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
-    for k in tqdm(queries):
-        query = '<ImageHere>' + queries[k]['question']
-        image = queries[k]["figure_path"]
-        with torch.cuda.amp.autocast():
-            response, _ = model.chat(tokenizer, query=query, image=image, 
-                                     hd_num=16, history=[], do_sample=False)
-        queries[k]['response'] = response
-
-def evaluate(queries):
-    """Evaluate the model on the given queries.
-
-    Parameters:
-    queries (dict): Dictionary of queries to evaluate. Each query should have the following keys:
-        - figure_path (str): Path to the image file
-        - question (str): Question to ask about the image
-    
-    Returns:
-    None
-    """
-    raise NotImplementedError("Implement your own evaluation pipeline based on your model design")
+import os
+import json
+import argparse
+from generate_lib.utils import get_generate_fn, get_client_fn, generate_response_remote_wrapper
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -49,6 +20,7 @@ if __name__ == '__main__':
 
     # custom arguments
     parser.add_argument('--model_path', type=str, required=True)
+    parser.add_argument('--model_api', type=str, required=False, default=None)
     args = parser.parse_args()
 
     input_file = os.path.join(args.data_dir, f"{args.mode}_{args.split}.json")
@@ -58,7 +30,6 @@ if __name__ == '__main__':
 
     # output file
     os.makedirs(args.output_dir, exist_ok=True)
-    assert '-' not in args.model_name, "Model name cannot contain '-'"
     output_file = os.path.join(args.output_dir, 
             f'gen-{args.model_name}-{args.mode}_{args.split}.json')
 
@@ -75,9 +46,12 @@ if __name__ == '__main__':
     print("Evaluation mode:", args.mode)
     print("Output file:", output_file)
 
-    # switch to demo(queries, model_path) for IXC2 4khd model
-    demo(queries, model_path=args.model_path)
-    # evaluate(queries) 
+    generate_fn = get_generate_fn(args.model_path)
+    if args.model_api is not None:
+        client, model = get_client_fn(args.model_path)(args.model_path, args.model_api)
+        generate_response_remote_wrapper(generate_fn, queries, model, args.model_api, client)
+    else:
+        generate_fn(args.model_path, queries)
 
     for k in queries:
         queries[k].pop("figure_path", None)

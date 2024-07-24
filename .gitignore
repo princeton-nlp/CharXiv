@@ -161,5 +161,10 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 temp/*
+results/*
+slurm/*
 images/*.jpg
 images/*.zip
+internal_generate.sh
+internal_evaluate.sh
+slurm_submit.sh
