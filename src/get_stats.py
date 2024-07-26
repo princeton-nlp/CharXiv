@@ -91,8 +91,8 @@ if __name__ == "__main__":
     parser.add_argument('--stats_prefix', type=str, default='stats-')
     args = parser.parse_args()
 
-    descriptive_score_path = f"full_results/{args.score_prefix}{args.model_name}-descriptive_{args.split}.json"
-    reasoning_score_path = f"full_results/{args.score_prefix}{args.model_name}-reasoning_{args.split}.json"
+    descriptive_score_path = f"results/{args.score_prefix}{args.model_name}-descriptive_{args.split}.json"
+    reasoning_score_path = f"results/{args.score_prefix}{args.model_name}-reasoning_{args.split}.json"
 
     image_meta = json.load(open(f"data/image_metadata_{args.split}.json"))
     descriptive_meta = json.load(open(f"data/descriptive_{args.split}.json"))
@@ -104,7 +104,7 @@ if __name__ == "__main__":
         reasoning_stats = get_reasoning_scores(reasoning_scores, descriptive_meta, 
                                                reasoning_meta, image_meta)
         reasoning_stats = get_stats(reasoning_stats)
-        json.dump(reasoning_stats, open(f"full_results/{args.stats_prefix}{args.model_name}-reasoning_{args.split}.json", "w"), indent=4)
+        json.dump(reasoning_stats, open(f"results/{args.stats_prefix}{args.model_name}-reasoning_{args.split}.json", "w"), indent=4)
         print("### Reasoning Stats ###")
         print(json.dumps(reasoning_stats, indent=4))
 
@@ -114,7 +114,7 @@ if __name__ == "__main__":
                                                    reasoning_meta, image_meta)
         descriptive_stats = get_stats(descriptive_stats)
 
-        json.dump(descriptive_stats, open(f"full_results/{args.stats_prefix}{args.model_name}-descriptive_{args.split}.json", "w"), indent=4)
+        json.dump(descriptive_stats, open(f"results/{args.stats_prefix}{args.model_name}-descriptive_{args.split}.json", "w"), indent=4)
         print("### Descriptive Stats ###")
         print(json.dumps(descriptive_stats, indent=4))
     
