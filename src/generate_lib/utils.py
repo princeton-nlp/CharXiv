@@ -131,6 +131,10 @@ def get_generate_fn(model_path):
     # vila
     elif model_name in ['VILA1.5-40b']:
         from .vila15 import generate_response
+    # ovis
+    elif model_name in ['Ovis1.5-Llama3-8B',
+                        'Ovis1.5-Gemma2-9B']:
+        from .ovis import generate_response
     else:
         raise ValueError(f"Model {model_name} not supported")
     return generate_response
