@@ -51,7 +51,7 @@ if __name__ == '__main__':
         client, model = get_client_fn(args.model_path)(args.model_path, args.model_api)
         generate_response_remote_wrapper(generate_fn, queries, model, args.model_api, client)
     else:
-        generate_fn(args.model_path, queries)
+        generate_fn(queries, args.model_path)
 
     for k in queries:
         queries[k].pop("figure_path", None)

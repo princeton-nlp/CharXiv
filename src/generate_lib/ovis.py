@@ -6,7 +6,7 @@ from PIL import Image
 from transformers import AutoModelForCausalLM
 from tqdm import tqdm
 
-def generate_response(model_path, queries):
+def generate_response(queries, model_path):
     model = AutoModelForCausalLM.from_pretrained(model_path,
                                                  torch_dtype=torch.bfloat16,
                                                  multimodal_max_length=8192,

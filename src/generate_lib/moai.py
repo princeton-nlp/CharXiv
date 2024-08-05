@@ -16,7 +16,7 @@ import tqdm
 from PIL import Image
 import torch
 
-def generate_response(model_path, queries):
+def generate_response(queries, model_path):
     moai_model, moai_processor, seg_model, seg_processor, od_model, od_processor, sgg_model, ocr_model \
     = prepare_moai(moai_path=model_path, bits=4, grad_ckpt=False, lora=False, dtype='fp16')
     for k in tqdm(queries):

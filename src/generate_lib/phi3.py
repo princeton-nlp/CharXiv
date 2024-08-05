@@ -5,7 +5,7 @@ from PIL import Image
 from transformers import AutoModelForCausalLM, AutoProcessor
 from tqdm import tqdm
 
-def generate_response(queries, model_path=None):
+def generate_response(queries, model_path):
     
 
     model = AutoModelForCausalLM.from_pretrained(model_path, device_map="cuda", trust_remote_code=True, 

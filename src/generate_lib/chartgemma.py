@@ -6,7 +6,7 @@ from transformers import AutoProcessor, PaliGemmaForConditionalGeneration
 import torch
 from tqdm import tqdm
 
-def generate_response(queries, model_path=None):
+def generate_response(queries, model_path):
     # Load Model
     model = PaliGemmaForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.float16)
     processor = AutoProcessor.from_pretrained(model_path)

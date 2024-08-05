@@ -6,7 +6,7 @@ from tqdm import tqdm
 from PIL import Image
 import torch
 
-def generate_response(model_path, queries):
+def generate_response(queries, model_path):
     model = AutoModel.from_pretrained(model_path, trust_remote_code=True, torch_dtype=torch.bfloat16)
     model = model.to(device='cuda', dtype=torch.bfloat16)
     tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)

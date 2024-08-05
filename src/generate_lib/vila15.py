@@ -34,7 +34,7 @@ def load_images(image_files):
         out.append(image)
     return out
 
-def generate_response(queries, model_path=None):
+def generate_response(queries, model_path):
     disable_torch_init()
     
     model_name = get_model_name_from_path(model_path)

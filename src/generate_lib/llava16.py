@@ -6,7 +6,7 @@ from transformers import LlavaNextProcessor, LlavaNextForConditionalGeneration
 from tqdm import tqdm
 from PIL import Image
 
-def generate_responses(model_path, queries):
+def generate_responses(queries, model_path):
     # taken from: https://huggingface.co/llava-hf/llava-v1.6-mistral-7b-hf
     processor = LlavaNextProcessor.from_pretrained(model_path)
     model = LlavaNextForConditionalGeneration.from_pretrained(model_path, 

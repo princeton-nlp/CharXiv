@@ -4,7 +4,7 @@ import torch
 from transformers import AutoModel, AutoTokenizer
 from tqdm import tqdm
 
-def generate_response(model_path, queries):
+def generate_response(queries, model_path):
     # taken from: 
     torch.set_grad_enabled(False)
     if '4khd' in model_path:

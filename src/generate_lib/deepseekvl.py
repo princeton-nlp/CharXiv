@@ -8,7 +8,7 @@ from deepseek_vl.utils.io import load_pil_images
 import torch
 from tqdm import tqdm
 
-def generate_response(model_path, queries):
+def generate_response(queries, model_path):
     # specify the path to the model
     vl_chat_processor: VLChatProcessor = VLChatProcessor.from_pretrained(model_path)
     tokenizer = vl_chat_processor.tokenizer

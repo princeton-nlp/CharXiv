@@ -6,7 +6,7 @@ from PIL import Image
 import torch
 from tqdm import tqdm
 
-def generate_response(queries, model_path=None):
+def generate_response(queries, model_path):
     model_id = model_path
     device = "cuda:0"
     dtype = torch.bfloat16

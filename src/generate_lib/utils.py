@@ -33,7 +33,8 @@ def get_client_fn(model_path):
     # gemini
     elif model_path in ['gemini-1.5-pro-001', 
                         'gemini-1.0-pro-vision-001', 
-                        'gemini-1.5-flash-001']:
+                        'gemini-1.5-flash-001',
+                        'gemini-1.5-pro-exp-0801']:
         from .gemini import get_client_model
     # gpt
     elif model_path in ['gpt-4o-2024-05-13', 
@@ -49,6 +50,9 @@ def get_client_fn(model_path):
     elif model_path in ['qwen-vl-max', 
                         'qwen-vl-plus']:
         from .qwen import get_client_model
+    # internvl2pro
+    elif model_path in ['InternVL2-Pro']:
+        from .internvl2pro import get_client_model
     else:
         raise ValueError(f"Model {model_path} not supported")
     return get_client_model
@@ -73,7 +77,8 @@ def get_generate_fn(model_path):
     # gemini
     elif model_name in ['gemini-1.5-pro-001', 
                         'gemini-1.0-pro-vision-001', 
-                        'gemini-1.5-flash-001']:
+                        'gemini-1.5-flash-001',
+                        'gemini-1.5-pro-exp-0801']:
         from .gemini import generate_response
     # gpt
     elif model_name in ['gpt-4o-2024-05-13', 
@@ -135,6 +140,9 @@ def get_generate_fn(model_path):
     elif model_name in ['Ovis1.5-Llama3-8B',
                         'Ovis1.5-Gemma2-9B']:
         from .ovis import generate_response
+    # internvl2pro
+    elif model_name in ['InternVL2-Pro']:
+        from .internvl2pro import generate_response
     else:
         raise ValueError(f"Model {model_name} not supported")
     return generate_response

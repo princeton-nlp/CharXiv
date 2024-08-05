@@ -19,7 +19,7 @@ from cambrian.mm_utils import tokenizer_image_token, process_images, get_model_n
 
 from PIL import Image
 
-def generate_response(model_path, queries):
+def generate_response(queries, model_path):
     conv_mode = "chatml_direct"
     def process(image, question, tokenizer, image_processor, model_config):
         qs = question

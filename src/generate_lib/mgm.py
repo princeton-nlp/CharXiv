@@ -64,7 +64,7 @@ def get_image_input_from_path(image, model, image_processor):
     return images, images_aux, 
 
 
-def generate_response(model_path, queries):
+def generate_response(queries, model_path):
     disable_torch_init()
     model_path = os.path.expanduser(model_path)
     model_name = get_model_name_from_path(model_path)

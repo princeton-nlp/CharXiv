@@ -113,7 +113,7 @@ def split_model(model_name):
 
     return device_map
 
-def generate_response(queries, model_path=None):
+def generate_response(queries, model_path):
     device_map = split_model(model_path.split('/')[-1])
     print(device_map)
     model = AutoModel.from_pretrained(

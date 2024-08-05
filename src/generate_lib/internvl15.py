@@ -87,7 +87,7 @@ def load_image(image_file, input_size=448, max_num=6):
     pixel_values = torch.stack(pixel_values)
     return pixel_values
 
-def generate_response(model_path, queries):
+def generate_response(queries, model_path):
     model = AutoModel.from_pretrained(
         model_path,
         torch_dtype=torch.bfloat16,

@@ -5,7 +5,7 @@ from SPHINX import SPHINXModel
 from PIL import Image
 from tqdm import tqdm
 
-def generate_response(model_path, queries):
+def generate_response(queries, model_path):
     model = SPHINXModel.from_pretrained(pretrained_path=model_path, with_visual=True)
     for k in tqdm(queries):
         qas = [[queries[k]['question'], None]]

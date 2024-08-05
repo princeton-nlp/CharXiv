@@ -4,7 +4,7 @@ from transformers.image_utils import load_image
 from transformers import AutoProcessor, AutoModelForVision2Seq
 from tqdm import tqdm
 
-def generate_response(model_path, queries):
+def generate_response(queries, model_path):
     model = AutoModelForVision2Seq.from_pretrained(model_path).to('cuda')
     processor = AutoProcessor.from_pretrained(model_path)
     for k in tqdm(queries):
