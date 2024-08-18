@@ -33,7 +33,7 @@ def get_descriptive_result_gpt(client, prompt, length, max_retries=10):
                         "content": prompt,
                     }
                 ],
-                model="gpt-4o",
+                model="gpt-4o-2024-05-13",
                 response_format={"type": "json_object"},
                 n=1,
                 max_tokens=max_tokens,

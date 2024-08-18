@@ -16,7 +16,7 @@ def get_reasoning_result_gpt(client, prompt, max_retries=10):
                         "content": prompt,
                     }
                 ],
-                model="gpt-4o",
+                model="gpt-4o-2024-05-13",
                 response_format={"type": "json_object"},
                 n=1,
                 max_tokens=max_tokens,
@@ -33,6 +33,7 @@ def get_reasoning_result_gpt(client, prompt, max_retries=10):
             if 'Unterminated string starting at' in str(e):
                 if max_tokens >= 1024:
                     print(f"Failed to get response for prompt: {prompt}")
+                    ext, scr = 'Failed to parse response', -1
                     break
                 else:
                     max_tokens = min(1024, max_tokens * 2) # double the max_tokens
