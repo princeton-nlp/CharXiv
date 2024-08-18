@@ -38,6 +38,7 @@ def get_client_fn(model_path):
         from .gemini import get_client_model
     # gpt
     elif model_path in ['gpt-4o-2024-05-13', 
+                        'gpt-4o-2024-08-06',
                         'gpt-4-turbo-2024-04-09', 
                         'gpt-4o-mini-2024-07-18']:
         from .gpt import get_client_model
@@ -82,13 +83,15 @@ def get_generate_fn(model_path):
         from .gemini import generate_response
     # gpt
     elif model_name in ['gpt-4o-2024-05-13', 
+                        'gpt-4o-2024-08-06',
                         'gpt-4-turbo-2024-04-09', 
                         'gpt-4o-mini-2024-07-18']:
         from .gpt import generate_response
     # idefics2
     elif model_name in ['idefics2-8b',
-                        'idefics2-8b-chatty']:
-        from .idefics2 import generate_response
+                        'idefics2-8b-chatty',
+                        'Idefics3-8B-Llama3']:
+        from .idefics import generate_response
     # ixc2
     elif model_name in ['internlm-xcomposer2-4khd-7b',
                         'internlm-xcomposer2-vl-7b']:
@@ -110,8 +113,11 @@ def get_generate_fn(model_path):
         from .mgm import generate_response
     # minicpm
     elif model_name in ['MiniCPM-Llama3-V-2_5',
-                        'MiniCPM-V-2']:
+                        'MiniCPM-V-2',
+                        'MiniCPM-V-2_6']:
         from .minicpm import generate_response
+    elif model_name in ['glm-4v-9b']:
+        from .glm import generate_response
     # moai
     elif model_name in ['MoAI-7B']:
         from .moai import generate_response
@@ -143,6 +149,27 @@ def get_generate_fn(model_path):
     # internvl2pro
     elif model_name in ['InternVL2-Pro']:
         from .internvl2pro import generate_response
+    elif model_name in ['ChartLlama-13b']:
+        from .chartllama import generate_response
+    elif model_name in ['TinyChart-3B-768']:
+        from .tinychart import generate_response
+    elif model_name in ['ChartInstruct-LLama2',
+                        'ChartInstruct-FlanT5-XL']:
+        from .chartinstruct import generate_response
+    elif model_name in ['unichart-chartqa-960']:
+        from .unichart import generate_response
+    elif model_name in ['ChartAssistant']:
+        from .chartast import generate_response
+    elif model_name in ['DocOwl1.5-Omni',
+                        'DocOwl1.5-Chat',]:
+        from .docowl15 import generate_response
+    elif model_name in ['ureader-v1']:
+        from .ureader import generate_response
+    elif model_name in ['TextMonkey',
+                        'Monkey-Chat',]:
+        from .textmonkey import generate_response
+    elif model_name in ['cogagent-vqa-hf']:
+        from .cogagent import generate_response
     else:
         raise ValueError(f"Model {model_name} not supported")
     return generate_response
