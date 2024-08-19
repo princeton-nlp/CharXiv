@@ -14,7 +14,8 @@ def generate_response_remote_wrapper(generate_fn,
             try:
                 result = generate_fn(image, query, model_path, 
                     api_key=api_key, client=client, random_baseline=False)
-            except:
+            except Exception as e:
+                print(f"Error: {e}")
                 print(f"Error {curr_retries}, sleeping for {sleep_time} seconds...")
                 time.sleep(sleep_time)
                 curr_retries += 1
@@ -39,6 +40,7 @@ def get_client_fn(model_path):
     # gpt
     elif model_path in ['gpt-4o-2024-05-13', 
                         'gpt-4o-2024-08-06',
+                        'chatgpt-4o-latest',
                         'gpt-4-turbo-2024-04-09', 
                         'gpt-4o-mini-2024-07-18']:
         from .gpt import get_client_model
@@ -84,6 +86,7 @@ def get_generate_fn(model_path):
     # gpt
     elif model_name in ['gpt-4o-2024-05-13', 
                         'gpt-4o-2024-08-06',
+                        'chatgpt-4o-latest',
                         'gpt-4-turbo-2024-04-09', 
                         'gpt-4o-mini-2024-07-18']:
         from .gpt import generate_response
