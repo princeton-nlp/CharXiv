@@ -243,3 +243,5 @@ If you use our work and are inspired by our work, please consider cite us (avail
 
 🤗 We adapted part of the [MathVista](https://github.com/lupantech/MathVista)'s codebase in building our evaluation framework, and we greatly appreciate their contributions to the MLLM community.  
 🤗 The lyrics in the teaser video are created by [GPT-4o](https://openai.com/index/hello-gpt-4o/) from our abstract, and the music is created by [Suno](https://suno.com/). Video is manually edited using [CapCut](https://www.capcut.com/).
+
+**We’ve received multiple requests for scripts that batch convert vector images to raster images from arXiv source files that we used to construct CharXiv. While the code is not part of this codebase, we are happy to provide them. Please send an email to [Zirui Wang](mailto:zw1300@cs.princeton.edu) for inquiries.**
