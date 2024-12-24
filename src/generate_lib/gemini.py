@@ -13,15 +13,8 @@ def get_client_model(model_path, api_key):
 
 def generate_response(image_path, query, model, media_type="image/jpeg", api_key=None, client=None, random_baseline=False):
     # Load from local file
-    if 'gemini-1.5-pro-latest' in model.model_name:
-        time.sleep(0)
-    elif 'gemini-1.0' in model.model_name:
-        time.sleep(0)
-    elif 'flash' in model.model_name:
-        time.sleep(0)
     image = Image.open(image_path)
-    contents = [image, query]
-    response = model.generate_content(contents, stream=True,
+    response = model.generate_content([image, query], 
     generation_config=genai.types.GenerationConfig(
     candidate_count=1,
     max_output_tokens=1000,
@@ -33,6 +26,5 @@ def generate_response(image_path, query, model, media_type="image/jpeg", api_key
         HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
         HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
         HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE}
-)
-    response.resolve()
+    )
     return response.text
