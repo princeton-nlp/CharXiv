@@ -44,6 +44,11 @@ def get_client_fn(model_path):
                         'gpt-4-turbo-2024-04-09', 
                         'gpt-4o-mini-2024-07-18']:
         from .gpt import get_client_model
+    # o1
+    elif model_path in ['o1-preview',
+                        'o1-mini',
+                        'o1-2024-12-17']:
+        from .o1 import get_client_model
     # reka
     elif model_path in ['reka-core-20240415', 
                         'reka-flash-20240226', 
@@ -74,6 +79,35 @@ def get_generate_fn(model_path):
                         'claude-3-haiku-20240307',
                         'claude-3-5-sonnet-20240620']:
         from .claude import generate_response
+    # llama 3.2
+    elif model_name in ['Llama-3.2-11B-Vision-Instruct',
+                        'Llama-3.2-90B-Vision-Instruct']:
+        from .llama32 import generate_response
+    # llavaov
+    elif model_name in ['llava-onevision-qwen2-0.5b-ov',
+                        'llava-onevision-qwen2-7b-ov',
+                        'llava-onevision-qwen2-72b-ov-chat']:
+        from .llavaov import generate_response
+    # molmo
+    elif model_name in ['Molmo-7B-D-0924',
+                        'Molmo-7B-O-0924',
+                        'Molmo-72B-0924',
+                        'MolmoE-1B-0924',]:
+        from .molmo import generate_response
+    # nvlm
+    elif model_name in ['NVLM-D-72B']:
+        from .nvlm import generate_response
+    # phi35
+    elif model_name in ['Phi-3.5-vision-instruct']:
+        from .phi35 import generate_response
+    # pixtral
+    elif model_name in ['Pixtral-12B-2409']:
+        from .pixtral import generate_response
+    # qwen2
+    elif model_name in ['Qwen2-VL-2B-Instruct',
+                        'Qwen2-VL-7B-Instruct',
+                        'Qwen2-VL-72B-Instruct']:
+        from .qwen2 import generate_response
     # deepseekvl
     elif model_name in ['deepseek-vl-7b-chat']:
         from .deepseekvl import generate_response
@@ -90,6 +124,11 @@ def get_generate_fn(model_path):
                         'gpt-4-turbo-2024-04-09', 
                         'gpt-4o-mini-2024-07-18']:
         from .gpt import generate_response
+    # o1
+    elif model_name in ['o1-preview',
+                        'o1-mini',
+                        'o1-2024-12-17']:
+        from .o1 import generate_response
     # idefics2
     elif model_name in ['idefics2-8b',
                         'idefics2-8b-chatty',
