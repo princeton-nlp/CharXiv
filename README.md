@@ -10,6 +10,8 @@ This repository contains the code to evaluate models on CharXiv from the paper [
 https://github.com/princeton-nlp/CharXiv/assets/59942464/ab9b293b-8fd6-4735-b8b3-0079ee978b61
 
 ## 📰 News
+**[12/25/2024]** 🚀 We updated the [leaderboard]((https://charxiv.github.io/#leaderboard)) with the latest models: o1, Qwen2-VL, Pixtral, InternVL 2.5, Llama 3.2 Vision, NVLM, Molmo, Llava OneVision, Phi 3.5, and more!
+**[10/10/2024]** 🚀 CharXiv is accepted at **NeurIPS 2024 Datasets & Benchmarks Track** and NeurIPS 2024 Multimodal Algorithmic Reasoning Workshop as a **spotlight** paper.
 **[07/26/2024]** 🚀 Upcoming this week: we'll be releasing scores for [GPT-4o-mini](https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/) as well as the largest and most capable open-weight VLM in our benchmark: [InternVL2 LLaMA-3 76B](https://huggingface.co/OpenGVLab/InternVL2-Llama3-76B). Alongside scores, we find some [interesting patterns](https://x.com/zwcolin/status/1816948825036071196) in the trend of model improvement with respect to differnet chart understanding benchmarks on X.
 **[07/24/2024]** 🚀 We released the [full evaluation pipeline](https://github.com/princeton-nlp/CharXiv) (i.e., v1.0).  
 **[07/23/2024]** 🚀 We released our [evaluation results](https://huggingface.co/datasets/princeton-nlp/CharXiv/tree/main/existing_evaluations) on **all 34 MLLMs** that we have tested so far -- this includes all models' responses to CharXiv's challenging questions, scores graded by GPT-4o, as well as aggregated stats.   
