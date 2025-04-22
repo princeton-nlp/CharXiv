@@ -8,7 +8,7 @@ from score_utils import DOMAIN2ABBR, NUM2YEAR, QNUM2QTYPE, \
 
 def get_descriptive_scores(scores, dmeta, rmeta, imeta):
     stats = D_TEMPLATE()
-    for k, v in descriptive_meta.items():
+    for k, v in dmeta.items():
         num_subplot = dmeta[k]['num_subplots']
         subject = imeta[k]['category']
         year = imeta[k]['year']
@@ -33,7 +33,7 @@ def get_descriptive_scores(scores, dmeta, rmeta, imeta):
 
 def get_reasoning_scores(scores, dmeta, rmeta, imeta):
     stats = R_TEMPLATE()
-    for k, v in reasoning_meta.items():
+    for k, v in rmeta.items():
         num_subplot = dmeta[k]['num_subplots']
         subject = imeta[k]['category']
         year = imeta[k]['year']
